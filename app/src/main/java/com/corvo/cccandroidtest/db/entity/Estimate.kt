@@ -3,8 +3,8 @@ package com.corvo.cccandroidtest.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 
-@Entity(tableName = "estate")
-data class Estate(
+@Entity(tableName = "estimate")
+data class Estimate(
 
     // TODO: 1/18/2021
     val id: Long,
