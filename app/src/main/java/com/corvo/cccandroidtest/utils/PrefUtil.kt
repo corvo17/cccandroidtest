@@ -7,9 +7,9 @@ import androidx.core.content.edit
 class PrefUtil constructor(context: Context) {
 
     companion object{
-        private val IS_AUTHORIZED = "IS_AUTHORIZED"
-        private val APP_NAME = "CCCANDROIDTEST"
-        private val MODE = Context.MODE_PRIVATE
+        private const val IS_FIRST_ATTEMPT = "IS_FIRST_ATTEMPT"
+        private const val APP_NAME = "CCCANDROIDTEST"
+        private const val MODE = Context.MODE_PRIVATE
     }
 
     private var preferences: SharedPreferences = context.getSharedPreferences(
@@ -18,9 +18,9 @@ class PrefUtil constructor(context: Context) {
     )
 
 
-    var isAuthorized: Boolean?
-        get() = preferences.getBoolean(IS_AUTHORIZED, false)
+    var isFirstAttempt: Boolean?
+        get() = preferences.getBoolean(IS_FIRST_ATTEMPT, true)
         set(value) = preferences.edit {
-            putBoolean(IS_AUTHORIZED, value?:false)
+            putBoolean(IS_FIRST_ATTEMPT, value?:true)
         }
 }

@@ -5,6 +5,7 @@
     <string name="contact">Contact</string>
     <string name="created_by">Created By</string>
     <string name="revision_number">Revision Number</string>
-    <string name="requested">Requested</string>
+    <string name="requester">Requester</string>
     <string name="created">Created</string>
+    <string name="backPressAgain">To exit press again</string>
 </resources>

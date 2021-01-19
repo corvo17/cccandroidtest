@@ -1,27 +1,34 @@
 package com.corvo.cccandroidtest.ui.fragment
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.corvo.cccandroidtest.R
 import com.corvo.cccandroidtest.base.BaseFragment
+import com.corvo.cccandroidtest.databinding.FragmentMainBinding
+import com.corvo.cccandroidtest.ui.viewModel.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : BaseFragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
-    }
+    private val viewModel: MainViewModel by viewModel()
 
-    override fun getLayout(): Int = R.layout.fragment_main
+    private val binding: FragmentMainBinding
+        get() = childBinding as FragmentMainBinding
+
+    override fun getLayoutId(): Int = R.layout.fragment_main
 
     override fun setupViews() {
         getBaseActivity {
+            initViews()
+        }
+    }
 
+    private fun initViews(): Unit = with(binding) {
+        vm = viewModel
+        executePendingBindings()
+        if (viewModel.prefUtil.isFirstAttempt == true) {
+            viewModel.prefUtil.isFirstAttempt = false
+            viewModel.initLocalDB()
+        }else {
+            viewModel.loadEstimate()
         }
     }
 

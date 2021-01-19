@@ -3,22 +3,24 @@ package com.corvo.cccandroidtest.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "person")
 data class Person(
 
-        @PrimaryKey(autoGenerate = true)
-        val id: Long,
+    @PrimaryKey(autoGenerate = false)
+    var personId: Long = 0L,
 
-        @ColumnInfo(name = "first_name")
-        val firstName: String,
+    @ColumnInfo(name = "first_name")
+    val firstName: String,
 
-        @ColumnInfo(name = "last_name")
-        val lastName: String,
+    @ColumnInfo(name = "last_name")
+    val lastName: String,
 
-        val email: String,
+    val email: String,
 
-        @ColumnInfo(name = "phone_number")
-        val phoneNumber: String
+    @ColumnInfo(name = "phone_number")
+    val phoneNumber: String
 ) {
+    fun getFullName() = firstName + lastName
 }

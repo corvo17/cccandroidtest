@@ -9,9 +9,10 @@ import com.corvo.cccandroidtest.db.entity.Person
 
 
 @Database(
-    entities = [Person::class, Estimate::class, EstimateAndPerson::class],
+    entities = [Person::class, Estimate::class],
     version = 1,
-    exportSchema = false)
+    exportSchema = false
+)
 abstract class LocalDB : RoomDatabase() {
-    abstract fun getEstimateAndPerson(): EstimateAndPersonDao?
+    abstract fun getEstimateAndPersonDao(): EstimateAndPersonDao
 }
