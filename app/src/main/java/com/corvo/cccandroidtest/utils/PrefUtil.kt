@@ -6,7 +6,7 @@ import androidx.core.content.edit
 
 class PrefUtil constructor(context: Context) {
 
-    companion object{
+    companion object {
         private const val IS_FIRST_ATTEMPT = "IS_FIRST_ATTEMPT"
         private const val APP_NAME = "CCCANDROIDTEST"
         private const val MODE = Context.MODE_PRIVATE
@@ -21,6 +21,6 @@ class PrefUtil constructor(context: Context) {
     var isFirstAttempt: Boolean?
         get() = preferences.getBoolean(IS_FIRST_ATTEMPT, true)
         set(value) = preferences.edit {
-            putBoolean(IS_FIRST_ATTEMPT, value?:true)
+            putBoolean(IS_FIRST_ATTEMPT, value ?: true)
         }
 }

@@ -27,7 +27,7 @@ data class Estimate(
     val createdDate: Long,
 
     @ColumnInfo(name = "created_by")
-    val created_by: Long,
+    val created_by: String,
 
     @ColumnInfo(name = "requested_by")
     val requestedBy: String,

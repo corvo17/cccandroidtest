@@ -27,12 +27,11 @@ class MainFragment : BaseFragment() {
         if (viewModel.prefUtil.isFirstAttempt == true) {
             viewModel.prefUtil.isFirstAttempt = false
             viewModel.initLocalDB()
-        }else {
+        } else {
             viewModel.loadEstimate()
         }
     }
 
     override fun getTitle(): String = "MainFragment"
-
 
 }

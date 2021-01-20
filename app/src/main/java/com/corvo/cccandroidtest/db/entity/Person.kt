@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
 data class Person(
 
     @PrimaryKey(autoGenerate = false)
-    var personId: Long = 0L,
+    var personId: String,
 
     @ColumnInfo(name = "first_name")
     val firstName: String,

@@ -16,6 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 
 class MainViewModel constructor(
     private val estimateDao: EstimateAndPersonDao,
@@ -30,51 +31,42 @@ class MainViewModel constructor(
     fun initLocalDB() {
 
         CoroutineScope(Dispatchers.Main).launch {
-
             isLoading.value = true
-
             try {
 
                 withContext(CoroutineScope(context = Dispatchers.Default).coroutineContext) {
-                    try {
-                        Log.i("MainFragment", "started ")
-                        //val list: MutableList<EstimateAndPerson> = ArrayList()
-                        val currentTime = System.currentTimeMillis()
-                        val person1 = Person(
-                            1,
-                            "Joseph",
-                            "Sham",
-                            "joseph.sham@fake.fake",
-                            "123-456-7890"
-                        )
 
-                        estimateDao.insertPerson(person1)
+                    //val list: MutableList<EstimateAndPerson> = ArrayList()
+                    val currentTime = System.currentTimeMillis()
 
-                        val estimate1 = Estimate(
-                            0,
-                            "Placebo Secondary School",
-                            "32 Commissioners Road East",
-                            32,
-                            3,
-                            currentTime,
-                            person1.personId,
-                            person1.personId.toString(),
-                            person1.personId.toString()
-                        )
+                    val person1 = Person(
+                        UUID.randomUUID().toString(),
+                        "Joseph",
+                        "Sham",
+                        "joseph.sham@fake.fake",
+                        "123-456-7890"
+                    )
 
-                        estimateDao.insertEstimate(estimate1)
 
-                    } catch (exception: java.lang.Exception) {
-                        isLoading.value = false
-                        Log.i("MainFragment", exception.message ?: "Ex in Back")
-                    }
+                    val estimate1 = Estimate(
+                        0,
+                        "Placebo Secondary School",
+                        "32 Commissioners Road East",
+                        32,
+                        3,
+                        currentTime,
+                        person1.personId,
+                        person1.personId.toString(),
+                        person1.personId.toString()
+                    )
 
+                    estimateDao.insertPerson(person1)
+                    estimateDao.insertEstimate(estimate1)
                 }
 
                 loadEstimate()
 
             } catch (exception: Exception) {
-                Log.i("MainFragment", exception.message ?: "unknown")
                 isLoading.value = false
                 errorMessage.value = exception.message
             }
@@ -87,7 +79,7 @@ class MainViewModel constructor(
             isLoading.value = true
             try {
 
-                val _estimate:EstimateAndPerson
+                val _estimate: EstimateAndPerson
 
                 withContext(CoroutineScope(context = Dispatchers.Default).coroutineContext) {
                     _estimate = estimateDao.getAll().first()

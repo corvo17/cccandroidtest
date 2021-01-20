@@ -21,7 +21,7 @@ val dbModule = module {
 }
 
 val prefsModule = module {
-    single {PrefUtil(get()) }
+    single { PrefUtil(get()) }
 }
 
 val viewModel = module {

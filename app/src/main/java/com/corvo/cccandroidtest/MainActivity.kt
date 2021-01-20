@@ -18,26 +18,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.
-        beginTransaction().
-        add(R.id.container, MainFragment())
+        supportFragmentManager.beginTransaction().add(R.id.container, MainFragment())
             .commitAllowingStateLoss()
     }
 
     @SuppressLint("ShowToast")
     override fun onBackPressed() {
-        try {
-            if (doubleBackToExitPressedOnce) {
-                doubleBackToExitPressedOnce = false
-                super.finishAffinity()
-            } else {
-                doubleBackToExitPressedOnce = true
-                Toast.makeText(this, R.string.backPressAgain, Toast.LENGTH_SHORT)
-                Timer("SettingUp", false).schedule(2_000) { doubleBackToExitPressedOnce = false }
-            }
-        } catch (e: InflateException) {
+        if (doubleBackToExitPressedOnce) {
+            doubleBackToExitPressedOnce = false
+            super.finishAffinity()
+        } else {
+            doubleBackToExitPressedOnce = true
+            Toast.makeText(this, R.string.backPressAgain, Toast.LENGTH_SHORT)
+            Timer("SettingUp", false).schedule(2_000) { doubleBackToExitPressedOnce = false }
         }
-
-
     }
 }
